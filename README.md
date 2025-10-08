@@ -30,10 +30,15 @@ To run the Whole Slide Image Viewer, follow these steps:
 
 This will spin up the Django application. You can then navigate to the provided local URL in your web browser to access the image viewer interface.
 
-# Screenshots
+## Screenshots
 ![List example](examples/list.png)
 ![Viewer example](examples/slide_view.png)
 
+## Future improvements
+
+- [ ] Stream WSI's rather then converting them to WSI.
+- [ ] List directories
+- [ ] Generate miniatures overview
 
 ## Contributing:
 
