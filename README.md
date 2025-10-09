@@ -34,11 +34,9 @@ This will spin up the Django application. You can then navigate to the provided 
 ![List example](examples/list.png)
 ![Viewer example](examples/slide_view.png)
 
-## Future improvements
-
 - [ ] Stream WSI's rather then converting them to WSI.
 - [ ] List directories
-- [ ] Generate miniatures overview
+- [ ] Generate miniatures
 
 ## Contributing:
 
