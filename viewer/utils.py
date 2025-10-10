@@ -127,3 +127,15 @@ class _SlideFile:
     def __init__(self, relpath):
         self.name = os.path.basename(relpath)
         self.url_path = relpath
+
+import pyvips
+
+
+def generate_thumbnail(input_path, max_width=200):
+    """Generate a thumbnail for the given image using pyvips."""
+    thumbnail = pyvips.Image.thumbnail(input_path, max_width, height=max_width, size="down")
+
+    # Convert the thumbnail to JPEG format
+    thumbnail_buffer = thumbnail.write_to_buffer('.jpg')
+
+    return thumbnail_buffer
