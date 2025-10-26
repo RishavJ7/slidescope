@@ -4,6 +4,17 @@
 
 
 {% block additional_head %}
+    <script>
+        // On page render, check session storage and set styles accordingly
+        var sidebarState = window.sessionStorage.getItem('sidebarState');
+        if (sidebarState === 'collapsed') {
+            document.documentElement.style.setProperty('--sidebar-display', 'none');
+            document.documentElement.style.setProperty('--main-col-size', 'col-md-12 col-lg-12');
+        } else {
+            document.documentElement.style.setProperty('--sidebar-display', 'block');
+            document.documentElement.style.setProperty('--main-col-size', 'col-md-9 ml-sm-auto col-lg-10');
+        }
+    </script>
     <style type="text/css">
         html, body, .container-fluid, .row, main {
             height: 100%;
@@ -23,7 +34,7 @@
         }
 
         .sidebar-scrollable {
-            max-height: 80vh; /* This will make the sidebar take 80% of the viewport height. Adjust as needed. */
+            max-height: 90vh; /* This will make the sidebar take 80% of the viewport height. Adjust as needed. */
             overflow-y: auto;
         }
 
@@ -75,6 +86,9 @@
             width: 100% !important;
         }
 
+        #mainContent.with-sidebar {
+            margin-left: var(--sidebar-width, 20%);
+        }
 
     </style>
 {% endblock %}
@@ -103,7 +117,9 @@
         </nav>
 
         <div class="row">
-            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar" id="sidebarMenu">
+            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse show {% if 'sidebar-collapsed' in request.COOKIES %}collapsed{% endif %}"
+                 id="sidebarMenu">
+
                 <div class="position-sticky sidebar-scrollable">
                     <ul class="nav flex-column">
                         {% include "files.html" with files=available_files current_file=slide_filename %}
@@ -114,7 +130,9 @@
             </nav>
 
             <!-- Main Content -->
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" id="mainContent">
+            <main role="main"
+                  class="col-md-9 ml-sm-auto col-lg-10 px-md-4 {% if 'sidebar-collapsed' in request.COOKIES %}col-md-12 col-lg-12{% endif %}"
+                  id="mainContent">
                 <div id="view"></div>
             </main>
 
@@ -156,6 +174,7 @@
                 timeout: 120000,
             });
         });
+        // Check the initial state on page load
         document.addEventListener("DOMContentLoaded", function () {
             var menu = document.getElementById('sidebarMenu');
             var mainContent = document.getElementById('mainContent');
@@ -196,4 +215,5 @@
             }
         });
     </script>
+
 {% endblock %}
