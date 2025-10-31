@@ -1,7 +1,7 @@
 create_superuser:
 	docker compose run --rm web python manage.py createsuperuser
 build:
-	docker build -t wsi_viewer:latest .
+	docker build -t slidescope:latest .
 
 migrations:
 	docker compose run --rm web python manage.py makemigrations viewer

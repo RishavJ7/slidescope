@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   web:
-    image: wsi_viewer:latest
+    image: slidescope:latest
     command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
@@ -10,14 +10,14 @@ services:
       - .:/app
       - ${FOLDER}:/slides
     environment:
-      - DJANGO_SETTINGS_MODULE=wsi_viewer.settings
+      - DJANGO_SETTINGS_MODULE=slidescope.settings
     depends_on:
       - redis
       - celery
 
   celery:
-    image: wsi_viewer:latest
-    command: celery -A wsi_viewer worker -l info
+    image: slidescope:latest
+    command: celery -A slidescope worker -l info
     volumes:
       - .:/app
       - ${FOLDER}:/slides

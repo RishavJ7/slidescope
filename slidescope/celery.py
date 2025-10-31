@@ -2,9 +2,9 @@ import os
 from celery import Celery
 from django.conf import settings
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wsi_viewer.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'slidescope.settings')
 
-app = Celery('wsi_viewer')
+app = Celery('slidescope')
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 

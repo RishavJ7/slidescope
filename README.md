@@ -80,8 +80,8 @@ Before you begin, ensure you have installed:
 **1. Clone the repository:**
 
 ```bash
-git clone https://github.com/RishavJ7/simple-wsi-viewer.git
-cd simple-wsi-viewer
+git clone https://github.com/RishavJ7/slidescope.git
+cd slidescope
 ```
 
 **2. Start the server pointing to your WSI image folder:**
@@ -114,13 +114,13 @@ This single command will:
 ## 📁 Project Structure
 
 ```
-simple-wsi-viewer/
+slidescope/
 ├── Dockerfile              # Multi-stage Docker build with OpenSlide
 ├── docker-compose.yml      # Service orchestration
 ├── Makefile                # One-command build & run
 ├── manage.py               # Django entry point
 ├── requirements.txt        # Python dependencies
-├── wsi_viewer/             # Django project settings & routing
+├── slidescope/             # Django project settings & routing
 │   ├── settings.py
 │   └── urls.py
 ├── viewer/                 # Core Django app
